@@ -1,9 +1,13 @@
 from calculator.calculator import calculate
+import re
 
 ASK_FOR_FIRST_NUMBER = "What is the first number ?"
 ASK_FOR_PROCESS = "What is the process ?"
 ASK_FOR_SECOND_NUMBER = "What is the second number ?"
 
+
+def isdigit(text):
+    return re.match("^-?\d+(\.\d+)?$", text) is not None
 
 class User:
     def __init__(self):
@@ -15,8 +19,12 @@ class User:
         self.process = None
 
     def get_response(self, text):
-        self.first_number = int(text)
-        return ASK_FOR_PROCESS
+        if self.first_number is None:
+            if text.isdigit():
+                self.first_number = int(text)
+                return ASK_FOR_PROCESS
+            else:
+                return ASK_FOR_FIRST_NUMBER
 
 
         elif self.process is None:
@@ -26,10 +34,14 @@ class User:
 
 
         elif self.second_number is None:
-            self.second_number = int(text)
-            answer = self.calculate_answer()
-            self.reset()
-            return answer
+            text
+            if text.isdigit():
+                self.second_number = int(text)
+                answer = self.calculate_answer()
+                self.reset()
+                return answer
+            else:
+                return ASK_FOR_SECOND_NUMBER
                 
     def calculate_answer(self):
         return calculate(self.first_number, self.process, self.second_number)
