@@ -20,8 +20,8 @@ class User:
 
     def get_response(self, text):
         if self.first_number is None:
-            if text.isdigit():
-                self.first_number = int(text)
+            if isdigit(text):
+                self.first_number = float(text)
                 return ASK_FOR_PROCESS
             else:
                 return ASK_FOR_FIRST_NUMBER
@@ -34,9 +34,8 @@ class User:
 
 
         elif self.second_number is None:
-            text
-            if text.isdigit():
-                self.second_number = int(text)
+            if isdigit(text):
+                self.second_number = float(text)
                 answer = self.calculate_answer()
                 self.reset()
                 return answer
