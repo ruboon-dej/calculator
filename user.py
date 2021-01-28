@@ -15,12 +15,8 @@ class User:
         self.process = None
 
     def get_response(self, text):
-        if self.first_number is None:
-            if text.isdigit():
-                self.first_number = int(text)
-                return ASK_FOR_PROCESS
-            else:
-                return ASK_FOR_FIRST_NUMBER
+        self.first_number = int(text)
+        return ASK_FOR_PROCESS
 
 
         elif self.process is None:
@@ -30,13 +26,10 @@ class User:
 
 
         elif self.second_number is None:
-            if text.isdigit():
-                self.second_number = int(text)
-                answer = self.calculate_answer()
-                self.reset()
-                return answer
-            else:
-                return ASK_FOR_SECOND_NUMBER
+            self.second_number = int(text)
+            answer = self.calculate_answer()
+            self.reset()
+            return answer
                 
     def calculate_answer(self):
         return calculate(self.first_number, self.process, self.second_number)
