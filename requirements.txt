@@ -1,4 +1,4 @@
-calculator==0.2.0
+calculator @ git+https://github.com/ruboon-dej/calculator-lib@701fd789d7278e9f3690e96591e603e5f2d65a60
 certifi==2020.12.5
 chardet==4.0.0
 click==7.1.2
